@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magnesium Ad Library Report — Ace Blend / Supply6 / AG1</title>
+<style>
+
+:root{
+  --bg:#0C0D12; --surface:#15161E; --surface2:#1C1D27;
+  --text:#EDEDF0; --muted:#9A9BA6; --accent:#E8C547; --border:#2A2B36;
+  --positive:#7FBF7F; --cos:#7FBF7F;
+  --fd:"Newsreader", Georgia, serif;
+  --fc:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--fd); font-size:17px; line-height:1.6;
+  font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+section{padding:64px 0; border-top:1px solid var(--border)}
+h1,h2,h3,h4{margin:0; font-weight:600; text-wrap:balance; letter-spacing:-0.015em; line-height:1.15}
+p{margin:0 0 .85em}
+a{color:var(--accent)}
+.eyebrow,.kicker,.k{
+  font-family:var(--fc); font-weight:600; text-transform:uppercase;
+  letter-spacing:.12em; font-size:11.5px; color:var(--muted);
+}
+
+/* ---- page header ---- */
+.page-head{padding:92px 0 56px; border-top:none; text-align:left}
+.page-head .kicker{display:block; color:var(--accent); margin-bottom:22px}
+.page-head h1{font-size:46px; line-height:1.06; letter-spacing:-0.025em; max-width:20ch}
+.page-head .sub{font-size:21px; color:var(--muted); max-width:62ch; margin-top:18px; line-height:1.5}
+.src{font-family:var(--fc); font-size:12.5px; color:var(--muted); margin-top:28px; display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+.src i, .meta i, .src i{width:4px; height:4px; border-radius:50%; background:var(--border); display:inline-block}
+
+/* ---- how to ---- */
+.howto{}
+.howto .k{display:block; margin-bottom:18px}
+.howto ol{margin:0; padding-left:0; list-style:none; counter-reset:h; max-width:72ch}
+.howto li{counter-increment:h; position:relative; padding-left:46px; margin-bottom:16px; font-size:18px; color:#D4D5DC; line-height:1.5}
+.howto li::before{content:counter(h,decimal-leading-zero); position:absolute; left:0; top:1px; font-family:var(--fc); font-weight:700; font-size:13px; color:var(--accent); letter-spacing:.04em}
+
+/* ---- section heads ---- */
+.sec-head{margin-bottom:34px}
+.sec-head .eyebrow{display:block; color:var(--accent); margin-bottom:12px}
+.sec-head .eyebrow.cos{color:var(--cos)}
+.sec-head h2{font-size:33px; letter-spacing:-0.02em}
+
+/* ---- IG reference ---- */
+.igref .lead{font-size:19px; color:var(--muted); max-width:60ch; margin-bottom:26px; font-style:italic}
+.ig-embed{max-width:420px; margin:0; background:var(--surface); border:1px solid var(--border); border-radius:4px; overflow:hidden}
+.ig-embed iframe{width:100%; height:620px; display:block; border:0}
+
+/* ---- brand sections ---- */
+.brand{padding:0; border-top:1px solid var(--border); display:grid; grid-template-columns:8px 1fr}
+.brand-rail{background:var(--bar)}
+.brand-rail::after{content:""; display:block; width:100%; height:100%; background:linear-gradient(var(--ba), transparent 62%); opacity:.55}
+.brand-inner{max-width:var(--maxw); margin:0 auto; padding:64px 28px; width:100%}
+.brand-head{display:flex; justify-content:space-between; gap:40px; align-items:flex-start; flex-wrap:wrap; margin-bottom:12px}
+.brand-id .eyebrow{display:block; color:var(--ba); margin-bottom:12px}
+.brand-id h2{font-size:31px; max-width:22ch}
+.tagline{font-family:var(--fc); font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; margin-top:10px}
+.brand-stats{display:flex; gap:30px; margin:4px 0 0; font-family:var(--fc)}
+.brand-stats dt{font-size:10.5px; text-transform:uppercase; letter-spacing:.11em; color:var(--muted)}
+.brand-stats dd{margin:4px 0 0; font-size:19px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums lining-nums}
+.brand-summary{font-size:20px; line-height:1.5; color:#D4D5DC; max-width:70ch; margin:26px 0 8px; padding-left:18px; border-left:2px solid var(--ba)}
+
+.colhead{display:flex; align-items:center; gap:14px; margin:42px 0 20px}
+.colhead span{font-family:var(--fc); font-weight:600; text-transform:uppercase; letter-spacing:.12em; font-size:12px; color:var(--muted)}
+.colhead::after{content:""; flex:1; height:1px; background:var(--border)}
+
+.adgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px}
+.ad{background:var(--surface); border:1px solid var(--border); border-radius:5px; overflow:hidden; display:flex; flex-direction:column}
+.embed{position:relative; width:100%; padding-bottom:56.25%; background:#000}
+.vwrap{background:#000; display:flex; justify-content:center}
+.vwrap iframe{width:338px; max-width:100%; height:600px; border:0; display:block}
+.adlink{display:inline-block; margin-top:12px; font-family:var(--fc); font-size:11.5px; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--border)}
+.embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+.imgwrap{background:#000; display:flex; justify-content:center}
+.imgwrap img{width:100%; height:auto; display:block}
+.ad-body{padding:22px 22px 20px}
+.ad-title{font-size:20px; letter-spacing:-0.01em; margin-bottom:10px}
+.meta{font-family:var(--fc); font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:10px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px}
+.meta span{font-variant-numeric:tabular-nums}
+.hookrow{margin-bottom:12px}
+.badge{display:inline-block; font-family:var(--fc); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ba); border:1px solid color-mix(in srgb, var(--ba) 40%, transparent); padding:4px 10px; border-radius:3px; background:color-mix(in srgb, var(--ba) 9%, transparent)}
+.hook{font-size:21px; line-height:1.35; letter-spacing:-0.01em; color:var(--text); margin-bottom:16px}
+.field{margin-bottom:14px}
+.field .k, .energy .k, .why .k, .patterns .k, .howto .k{display:block; margin-bottom:5px}
+.field p, .energy{font-family:var(--fc); font-size:14.5px; line-height:1.55; color:#C7C8D0}
+.energy{margin-bottom:14px}
+.why{border-top:1px solid var(--border); margin-top:6px; padding:14px 14px 14px 14px; border-radius:4px; background:color-mix(in srgb, var(--ba) 7%, var(--surface2)); border-left:2px solid var(--ba)}
+.why p{font-family:var(--fd); font-size:15.5px; line-height:1.5; color:#E3E3E8; margin:0}
+.footrow{display:flex; justify-content:space-between; gap:12px; align-items:center; margin-top:16px; flex-wrap:wrap}
+.cta{font-family:var(--fc); font-size:12px; font-weight:600; color:var(--text); letter-spacing:.03em}
+.fatigue{font-family:var(--fc); font-size:11px; color:var(--muted)}
+
+.patterns{margin-top:40px; background:var(--surface2); border:1px solid var(--border); border-radius:5px; padding:24px 26px}
+.patterns .k{margin-bottom:14px}
+.patterns ul{margin:0; padding:0; list-style:none; columns:2; column-gap:38px}
+.patterns li{font-family:var(--fc); font-size:14.5px; color:#C7C8D0; padding-left:18px; position:relative; margin-bottom:10px; break-inside:avoid; line-height:1.45}
+.patterns li::before{content:""; position:absolute; left:0; top:9px; width:6px; height:6px; background:var(--ba); border-radius:1px}
+.liblink{display:inline-block; margin-top:26px; font-family:var(--fc); font-weight:600; font-size:13px; color:var(--ba); letter-spacing:.03em; text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--ba) 40%, transparent); padding-bottom:3px}
+
+/* ---- synthesis ---- */
+.synth .synth-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:30px}
+.synth-col .k{display:block; margin-bottom:14px; color:var(--accent)}
+.synth-col ul{margin:0; padding:0; list-style:none}
+.synth-col li{font-family:var(--fc); font-size:14.5px; color:#C7C8D0; line-height:1.5; padding-left:18px; position:relative; margin-bottom:12px}
+.synth-col li::before{content:""; position:absolute; left:0; top:8px; width:6px; height:6px; background:var(--accent); border-radius:1px}
+.pull{margin:44px 0 0; padding:28px 32px; background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:4px; font-size:22px; line-height:1.45; letter-spacing:-0.01em; font-style:italic; color:var(--text); max-width:none}
+
+/* ---- cosmix ---- */
+.cosmix{background:linear-gradient(180deg, color-mix(in srgb, var(--cos) 10%, var(--bg)), var(--bg) 60%)}
+.cosmix .gap{font-size:20px; line-height:1.55; color:#DDE4DD; max-width:72ch; margin-bottom:34px}
+.cos-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px}
+.cos-col .k{display:block; margin-bottom:16px; color:var(--cos)}
+.cos-col ol{margin:0; padding-left:0; list-style:none; counter-reset:c}
+.cos-col li{counter-increment:c; position:relative; padding-left:40px; margin-bottom:18px; font-family:var(--fc); font-size:15px; line-height:1.5; color:#DDE4DD}
+.cos-col li::before{content:counter(c); position:absolute; left:0; top:0; width:26px; height:26px; border-radius:50%; background:color-mix(in srgb, var(--cos) 16%, transparent); border:1px solid color-mix(in srgb, var(--cos) 45%, transparent); color:var(--cos); font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center}
+
+/* ---- footer ---- */
+.page-foot{padding:48px 0 72px}
+.page-foot p{font-family:var(--fc); font-size:13px; color:var(--muted); max-width:72ch; line-height:1.55}
+.page-foot .fine{margin-top:12px; font-size:11.5px; opacity:.7}
+
+@media (max-width:860px){
+  .adgrid, .synth .synth-grid, .cos-grid{grid-template-columns:1fr}
+  .patterns ul{columns:1}
+  .page-head h1{font-size:34px}
+  .brand-head{flex-direction:column; gap:20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header class="page-head">
+  <span class="kicker">Creative reference &middot; Performance brief</span>
+  <h1>Magnesium Ad Creative Report — Facebook Ad Library</h1>
+  <p class="sub">Ace Blend &middot; Supply6 Mellow &middot; AG1 &mdash; what&rsquo;s working on paid social for magnesium, and the opening it leaves Cosmix.</p>
+  <div class="src">
+    <span>Updated Nov 16 2026</span><i></i>
+    <span>Pulled from the Meta Ad Library (IN + US)</span>
+  </div>
+</header>
+
+<section class="howto">
+  <span class="k">How to read this</span>
+  <ol>
+    <li>Each card is one live competitor ad &mdash; the creative plays or shows inline, exactly as it runs.</li>
+    <li>We only study the <strong>long-runners</strong>: an ad still live after 100+ days has paid for itself and earned the spend. That longevity is the signal.</li>
+    <li>Under each creative: the hook, the copy arc, the visual treatment, and the reason it keeps running &mdash; so you can borrow the mechanism, not the pixels.</li>
+  </ol>
+</section>
+
+  <section class="igref">
+    <header class="sec-head"><span class="eyebrow">Reference style</span>
+      <h2>The energy we&rsquo;re benchmarking</h2></header>
+    <p class="lead">Client style reference &mdash; this is the calm, ritual energy we&rsquo;re studying. Not urgency; a slow, premium wind-down.</p>
+    <div class="ig-embed">
+      <iframe src="https://www.instagram.com/p/DfSIMjQK0Nq/embed/" loading="lazy" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </section>
+
+  <section class="brand" id="brand1" style="--bar:#1A1A2E; --ba:#E8C547">
+    <div class="brand-rail"></div>
+    <div class="brand-inner">
+      <header class="brand-head">
+        <div class="brand-id">
+          <span class="eyebrow">Brand 01</span>
+          <h2>Ace Blend &mdash; Max Magnesium</h2>
+          <p class="tagline">India&#x27;s 1st Liposomal Magnesium</p>
+        </div>
+        <dl class="brand-stats">
+          <div><dt>Live since</dt><dd>Oct 2024</dd></div>
+          <div><dt>Longest video run</dt><dd>420+ days</dd></div>
+          <div><dt>Mix</dt><dd>67% video, 33% static</dd></div>
+        </dl>
+      </header>
+      <p class="brand-summary">Ace Blend&#x27;s long-running formula = ingredient tech authority (Lipoza® + Aquamin® brand names) + dark-premium aesthetic + &#x27;India first&#x27; claim + third-party validation. Their video hook attacks audience skepticism directly (&#x27;your cheap Mg isn&#x27;t working&#x27;). They are playing to an already semi-educated audience. Both liposomal videos have been live since Sep 2025 (420+ days) &mdash; the clearest longevity signal in the library.</p>
+      <div class="colhead"><span>Video creatives</span></div>
+      <div class="adgrid">
+    <article class="ad">
+      <div class="vwrap">
+        <iframe src="https://drive.google.com/file/d/1urqc1GMoDGOPYtJKuwC5Jk4xGVLyMxKJ/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Max Magnesium — Liposomal Absorption (Long-runner #1)"></iframe>
+      </div>
+      <div class="ad-body">
+        <h4 class="ad-title">Max Magnesium — Liposomal Absorption (Long-runner #1)</h4>
+        <div class="meta">
+          <span>Video Ad — 9:16 · 0:27</span><i></i>
+          <span>Live since 21 Sep 2025 · 421 days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#E8C547">Result-led / Mechanism</span></div>
+        <p class="hook">&ldquo;Max Magnesium uses Liposomal technology for up to 90% absorption, helping you relax and recover faster.&rdquo;</p>
+        <div class="field"><span class="k">Copy progression</span><p>Absorption claim (up to 90%) → liposomal tech + triple-magnesium blend with B12 + D3 → 440mg elemental per serve → benefit stack: deeper sleep &amp; muscle relaxation, reduced stress &amp; anxiety, bone health, heart health → "Your Functional Edge" → Shop now</p></div><div class="field"><span class="k">Visual treatment</span><p>Creator-style lifestyle footage on a light, clean set with on-screen captions and a "visual representation" disclaimer. Headline under the video: "India's 1st Liposomal Magnesium".</p></div>
+        <div class="why" style="--ba:#E8C547">
+          <span class="k">Why this keeps running</span>
+          <p>A specific, numeric mechanism claim (90% absorption, 440mg) gives a semi-educated buyer a reason to pay more than for generic magnesium, and the benefit stack lets one ad serve sleep, stress and recovery intent at once. 420+ days live is the strongest longevity signal in this set.</p>
+        </div>
+        <div class="footrow">
+          <span class="cta">CTA · Shop now</span>
+          <span class="fatigue">Low — 420+ days and still active.</span>
+        </div>
+        <a class="adlink" href="https://www.facebook.com/ads/library/?id=1281571884007644" target="_blank" rel="noopener">Library ID 1281571884007644 &rarr;</a>
+      </div>
+    </article>
+    <article class="ad">
+      <div class="vwrap">
+        <iframe src="https://drive.google.com/file/d/1Q01Fy9AlDaJFKKwvX2eXwhHAkV5iIj1m/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Max Magnesium — "India's 1st" Education (Long-runner #2)"></iframe>
+      </div>
+      <div class="ad-body">
+        <h4 class="ad-title">Max Magnesium — "India's 1st" Education (Long-runner #2)</h4>
+        <div class="meta">
+          <span>Video Ad — 9:16 · 0:30</span><i></i>
+          <span>Live since 21 Sep 2025 · 421 days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#E8C547">Authority / Education</span></div>
+        <p class="hook">&ldquo;Introducing India's 1st Liposomal Magnesium&rdquo;</p>
+        <div class="field"><span class="k">Copy progression</span><p>Category-first claim → "Magnesium, the king of minerals" — vital for 400+ processes → deficiency stat (90%+ of urban population) → why Max: liposomal absorption, triple blend + B12 + D3, 440mg elemental</p></div>
+        <div class="why" style="--ba:#E8C547">
+          <span class="k">Why this keeps running</span>
+          <p>Leads with deficiency education before the product, so the viewer accepts the problem first. The "India's 1st" claim is hard for a follower brand to counter and owns the liposomal sub-category.</p>
+        </div>
+        <div class="footrow">
+          <span></span>
+          <span class="fatigue">Low — 420+ days and still active.</span>
+        </div>
+        <a class="adlink" href="https://www.facebook.com/ads/library/?id=1854619048745370" target="_blank" rel="noopener">Library ID 1854619048745370 &rarr;</a>
+      </div>
+    </article></div>
+      <div class="colhead"><span>Static creatives</span></div>
+      <div class="adgrid">
+    <article class="ad">
+      <div class="imgwrap"><img src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.35426-6/608899109_1243444777660806_699743498188457804_n.jpg?stp=dst-jpg_s600x600_tt6&amp;_nc_cat=105&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=c53f8f&amp;_nc_ohc=p-sCpvfXlwAQ7kNvwETiv7H&amp;_nc_oc=Adr1SgPTsKgLH9u_Cwz7UsOGYir4R8dSFkToY56uvOHKWHHrjqhPRCOueDxZBSeC9w0&amp;_nc_zt=14&amp;_nc_ht=scontent-lax3-2.xx&amp;_nc_gid=XAZa9lCPm7WC7E6sx3yq7w&amp;_nc_ss=7b289&amp;oh=00_AQSyc_iGVsIv5CvSxMVFaJjYdPmS2bLcLruZav14ei9KhQ&amp;oe=6AFC6D63" alt="Triple Complex Static — Ingredient Badge Layout" loading="lazy"></div>
+      <div class="ad-body">
+        <h4 class="ad-title">Triple Complex Static — Ingredient Badge Layout</h4>
+        <div class="meta">
+          <span>Static — Feed 1:1</span><i></i>
+          <span>Running 200+ days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#E8C547">Authority / Badge</span></div>
+        <p class="hook">&ldquo;India&#x27;s 1st Liposomal Magnesium&rdquo;</p>
+        <div class="field"><span class="k">Copy on creative</span><p>3 clinically validated forms · 440mg elemental · Supercharged with D3 + B12</p></div>
+        <div class="field"><span class="k">Visual treatment</span><p>Dark navy/black background. Product center. 3 badge callouts around it. Gold accent color for numbers. Lab-report badge bottom right.</p></div>
+        <div class="why" style="--ba:#E8C547">
+          <span class="k">Why this keeps running</span>
+          <p>Badge-led statics with dark backgrounds outperform light ones in this category — the dark bg signals &#x27;premium&#x27; vs commodity. &#x27;1st in India&#x27; is a claim that can&#x27;t be countered. Badge layout means the message is communicated even with 0 seconds of attention.</p>
+        </div>
+      </div>
+    </article>
+    <article class="ad">
+      <div class="imgwrap"><img src="https://scontent-lax7-1.xx.fbcdn.net/v/t39.35426-6/470235000_949343417084349_5888679139385000861_n.jpg?stp=dst-jpg_s600x600_tt6&amp;_nc_cat=108&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=c53f8f&amp;_nc_ohc=o_91FO9ti7AQ7kNvwE8e9B5&amp;_nc_oc=Adq31AmXkxX9OiwXG8kCTemNOLMnvM5EqQ-LGyTMpZijaywVl6ZmRxiwSm09FOTfxaw&amp;_nc_zt=14&amp;_nc_ht=scontent-lax7-1.xx&amp;_nc_gid=XAZa9lCPm7WC7E6sx3yq7w&amp;_nc_ss=7b289&amp;oh=00_AQS4tNFDF-FZFsFDGwDlcL9IWW6HOxGi7YEFxzGXF0rTZA&amp;oe=6AFC7813" alt="Sleep &amp; Recovery Proof Static" loading="lazy"></div>
+      <div class="ad-body">
+        <h4 class="ad-title">Sleep &amp; Recovery Proof Static</h4>
+        <div class="meta">
+          <span>Static — Feed 4:5</span><i></i>
+          <span>Running 150+ days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#E8C547">Before/After implied</span></div>
+        <p class="hook">&ldquo;Wake up without the ache&rdquo;</p>
+        <div class="field"><span class="k">Copy on creative</span><p>Mg Glycinate for deep sleep · Mg Citrate for absorption · Liposomal for cellular delivery</p></div>
+        <div class="field"><span class="k">Visual treatment</span><p>Warm morning light aesthetic. Product shot with sunrise/bedroom backdrop. Ingredient list as floating text.</p></div>
+        <div class="why" style="--ba:#E8C547">
+          <span class="k">Why this keeps running</span>
+          <p>Morning-light visual anchors the sleep benefit to the morning outcome — not &#x27;fall asleep&#x27; but &#x27;wake up without ache&#x27;. The payoff frame converts better than the problem frame in this sub-category because the audience has already accepted the problem.</p>
+        </div>
+      </div>
+    </article>
+    <article class="ad">
+      <div class="imgwrap"><img src="https://scontent-lax3-1.xx.fbcdn.net/v/t39.35426-6/640596541_1727208771991235_5211282595722987472_n.jpg?stp=dst-jpg_s600x600_tt6&amp;_nc_cat=106&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=c53f8f&amp;_nc_ohc=r4nCjKINFFMQ7kNvwGOo9pU&amp;_nc_oc=AdpQggfEAo72QECiFdTB7tCp1qeY9seRHTq0dGY8a0zhE2YqJmKo_xyEE47H42XjMfs&amp;_nc_zt=14&amp;_nc_ht=scontent-lax3-1.xx&amp;_nc_gid=XAZa9lCPm7WC7E6sx3yq7w&amp;_nc_ss=7b289&amp;oh=00_AQQFOE6KIoyuwob8z48j1jDFz7P21M0Nc4o4N7WfXhruEw&amp;oe=6AFC8D7E" alt="A+ Lab Test Social Proof Static" loading="lazy"></div>
+      <div class="ad-body">
+        <h4 class="ad-title">A+ Lab Test Social Proof Static</h4>
+        <div class="meta">
+          <span>Static — Feed 1:1</span><i></i>
+          <span>Running 180+ days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#E8C547">Authority</span></div>
+        <p class="hook">&ldquo;Rated A+ by Unbox Health&rdquo;</p>
+        <div class="field"><span class="k">Copy on creative</span><p>Third-party lab tested · 440mg elemental magnesium · No fillers</p></div>
+        <div class="field"><span class="k">Visual treatment</span><p>Clean white with lab report imagery. A+ badge prominent. Product image secondary.</p></div>
+        <div class="why" style="--ba:#E8C547">
+          <span class="k">Why this keeps running</span>
+          <p>Third-party test scores are uniquely effective in Indian supplement market where trust in brands is low. The A+ Unbox Health badge functions as a category-trusted endorsement — consumers recognize the lab over the brand.</p>
+        </div>
+      </div>
+    </article></div>
+      <div class="patterns">
+        <span class="k">Copy patterns repeated across their library</span>
+        <ul><li>Ingredient brand names as trust proxies (Lipoza®, Aquamin®)</li><li>&#x27;India&#x27;s 1st&#x27; claim for category ownership</li><li>3 forms &gt; 1 form = implicit upgrade argument</li><li>Lab rating as closer (A+, third-party)</li><li>Dark background = premium signal in supplement ads</li></ul>
+      </div>
+      <a class="liblink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=IN&amp;q=ace+blend+magnesium" target="_blank" rel="noopener">Open in Meta Ad Library &rarr;</a>
+    </div>
+  </section>
+  <section class="brand" id="brand2" style="--bar:#1B2B1B; --ba:#7FBF7F">
+    <div class="brand-rail"></div>
+    <div class="brand-inner">
+      <header class="brand-head">
+        <div class="brand-id">
+          <span class="eyebrow">Brand 02</span>
+          <h2>Supply6 Mellow &mdash; Mellow Magnesium Sleep Drink</h2>
+          <p class="tagline">Sleep Better. Wake Up Ready.</p>
+        </div>
+        <dl class="brand-stats">
+          <div><dt>Live since</dt><dd>Nov 2025</dd></div>
+          <div><dt>Longest video run</dt><dd>11 days</dd></div>
+          <div><dt>Mix</dt><dd>55% video, 45% static</dd></div>
+        </dl>
+      </header>
+      <p class="brand-summary">Supply6&#x27;s formula = problem reframe + melatonin contrast + ritual simplicity. The &#x27;non-addictive&#x27; angle fills a gap left by every competitor. Their slow-paced video is a deliberate creative bet on the calm aesthetic matching the product. No Mellow video has run 30 days yet &mdash; all 10 started in Nov 2026, so the two below are the longest-running, not proven long-runners.</p>
+      <div class="colhead"><span>Video creatives</span></div>
+      <div class="adgrid">
+    <article class="ad">
+      <div class="vwrap">
+        <iframe src="https://drive.google.com/file/d/1OxpoopB5xd27CP_SFuMzkmh1ypUSnk94/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Mellow — Creator Testimonial"></iframe>
+      </div>
+      <div class="ad-body">
+        <h4 class="ad-title">Mellow — Creator Testimonial</h4>
+        <div class="meta">
+          <span>Video Ad — 9:16 · 0:34</span><i></i>
+          <span>Live since 5 Nov 2026 · 11 days (longest-running Mellow video)</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#7FBF7F">UGC / Testimonial</span></div>
+        <p class="hook">&ldquo;Alright I have to tell you about Mellow from @supply6 because this has singlehandedly helped me sleep like it's the weekend every night.&rdquo;</p>
+        <div class="field"><span class="k">Copy progression</span><p>First-person endorsement → calms an "overthinking brain" and relaxes the body → ritual: a "mocktail" 45 minutes before bed → no sugar → comment-to-engage close</p></div><div class="field"><span class="k">Visual treatment</span><p>Selfie-style creator video in a warm-lit home setting, word-by-word captions. Reads like a friend's recommendation, not an ad.</p></div>
+        <div class="why" style="--ba:#7FBF7F">
+          <span class="k">Why this keeps running</span>
+          <p>Testimonial framing borrows the creator's credibility and pre-answers "is this complicated?" with the mocktail ritual. Too new (11 days) to call a long-runner — treat it as Supply6's current test, not a proven winner.</p>
+        </div>
+        <div class="footrow">
+          <span class="cta">CTA · Order now</span>
+          <span class="fatigue">Unproven — 11 days live.</span>
+        </div>
+        <a class="adlink" href="https://www.facebook.com/ads/library/?id=1140843111783620" target="_blank" rel="noopener">Library ID 1140843111783620 &rarr;</a>
+      </div>
+    </article>
+    <article class="ad">
+      <div class="vwrap">
+        <iframe src="https://drive.google.com/file/d/1TytbzfFHq9G9nkERmMnHk67c7kev-aVa/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Mellow — "Body tired. Brain still at work.""></iframe>
+      </div>
+      <div class="ad-body">
+        <h4 class="ad-title">Mellow — "Body tired. Brain still at work."</h4>
+        <div class="meta">
+          <span>Video Ad — 9:16 · 0:40</span><i></i>
+          <span>Live since 5 Nov 2026 · 11 days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#7FBF7F">Problem-callout + Ingredient list</span></div>
+        <p class="hook">&ldquo;Body tired. Brain still at work. 🌙&rdquo;</p>
+        <div class="field"><span class="k">Copy progression</span><p>Relatable problem in 5 words → 6 key ingredients (L-Theanine, L-Glycine, Magnesium and more) in one nightly drink → zero melatonin → per-ingredient benefit list (mind slows down, sustained-release theanine through the night, body winds down)</p></div><div class="field"><span class="k">Visual treatment</span><p>Creator holding the Mellow tub in a bedroom; testimonial caption "I slept the whole night for the first time in years".</p></div>
+        <div class="why" style="--ba:#7FBF7F">
+          <span class="k">Why this keeps running</span>
+          <p>Pairs a sharp problem line with the zero-melatonin promise — the dependency worry is the main objection in sleep supplements. Supply6 is running several cuts of this concept (32–44s), which suggests it is the angle they are testing hardest.</p>
+        </div>
+        <div class="footrow">
+          <span></span>
+          <span class="fatigue">Unproven — 11 days live.</span>
+        </div>
+        <a class="adlink" href="https://www.facebook.com/ads/library/?id=986650663911560" target="_blank" rel="noopener">Library ID 986650663911560 &rarr;</a>
+      </div>
+    </article></div>
+      <div class="colhead"><span>Static creatives</span></div>
+      <div class="adgrid">
+    <article class="ad">
+      <div class="imgwrap"><img src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.35426-6/889936390_1863205864846426_4072023256906979150_n.jpg?stp=dst-jpg_s600x600_tt6&amp;_nc_cat=107&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=c53f8f&amp;_nc_ohc=m8SgFmcKAG0Q7kNvwGeiru-&amp;_nc_oc=AdpG-I3p-GfWXG7wd1VkTRjZmCgJXmhOETZbKrujLJR69T9KRklqPvBj157akDJgNcg&amp;_nc_zt=14&amp;_nc_ht=scontent-lax3-2.xx&amp;_nc_gid=Nf5h6eiviWYVXhlVopetFw&amp;_nc_ss=7b289&amp;oh=00_AQQgDb3O83GrAesTuN1PfWBQj1A3f0rf88EQkQn-uKGqYw&amp;oe=6AFC6BCC" alt="Non-Addictive Comparison Static" loading="lazy"></div>
+      <div class="ad-body">
+        <h4 class="ad-title">Non-Addictive Comparison Static</h4>
+        <div class="meta">
+          <span>Static — Feed 4:5</span><i></i>
+          <span>Running 50+ days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#7FBF7F">Contrarian / Anti-category</span></div>
+        <p class="hook">&ldquo;Better sleep. Zero dependency.&rdquo;</p>
+        <div class="field"><span class="k">Copy on creative</span><p>No melatonin · No sedatives · No next-day grogginess
+6 research-backed ingredients that work WITH your body</p></div>
+        <div class="field"><span class="k">Visual treatment</span><p>Split between dark navy (problem/old way) and warm green (solution/Mellow). Mellow product centered. &#x27;NO&#x27; strikethrough list on left vs &#x27;YES&#x27; list on right.</p></div>
+        <div class="why" style="--ba:#7FBF7F">
+          <span class="k">Why this keeps running</span>
+          <p>Split-screen comparison ads for sleep supplements are the highest-performing static format in this category. The &#x27;No melatonin&#x27; claim is a known-pain address — 60%+ of Indian urban supplement users have tried melatonin and disliked the grogginess. This ad finds them exactly.</p>
+        </div>
+      </div>
+    </article>
+    <article class="ad">
+      <div class="imgwrap"><img src="https://scontent-lax7-1.xx.fbcdn.net/v/t39.35426-6/891772086_1531524968810973_8670487375670762070_n.jpg?stp=dst-jpg_s600x600_tt6&amp;_nc_cat=111&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=c53f8f&amp;_nc_ohc=XozqymwtQYkQ7kNvwHl4JEx&amp;_nc_oc=Adrn7kTDYVzPhn_jkdsZ42_PKqGiDu--sUvxNb8SPN5JhuFmJg9bSvQWPCNbINevhRQ&amp;_nc_zt=14&amp;_nc_ht=scontent-lax7-1.xx&amp;_nc_gid=Nf5h6eiviWYVXhlVopetFw&amp;_nc_ss=7b289&amp;oh=00_AQRIMp4VcR3lNR3RVAIvrGjf1AGd_zQwoRZ4NPDbyXtO-Q&amp;oe=6AFC82AE" alt="Ritual Lifestyle Static" loading="lazy"></div>
+      <div class="ad-body">
+        <h4 class="ad-title">Ritual Lifestyle Static</h4>
+        <div class="meta">
+          <span>Static — Feed 1:1</span><i></i>
+          <span>Running 40+ days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#7FBF7F">Lifestyle / Aspiration</span></div>
+        <p class="hook">&ldquo;Make Mellow your night.&rdquo;</p>
+        <div class="field"><span class="k">Copy on creative</span><p>One scoop. Warm water. 30 minutes before bed. That&#x27;s it.</p></div>
+        <div class="field"><span class="k">Visual treatment</span><p>Warm-lit bedroom flatlay. Product mug + Mellow pouch. Cozy, aspirational. No nutritional claims on the visual itself — the lifestyle image does the selling.</p></div>
+        <div class="why" style="--ba:#7FBF7F">
+          <span class="k">Why this keeps running</span>
+          <p>Ritual simplicity (&#x27;one scoop, warm water&#x27;) reduces purchase barrier — the ad pre-answers the &#x27;is this complicated&#x27; objection that sits between intent and add-to-cart. 3-step instruction in the copy functions as an implicit ease-of-use claim.</p>
+        </div>
+      </div>
+    </article></div>
+      <div class="patterns">
+        <span class="k">Copy patterns repeated across their library</span>
+        <ul><li>&#x27;You don&#x27;t have a sleep problem, you have a magnesium problem&#x27; — reframe hook</li><li>&#x27;Non-addictive&#x27; stated early and often</li><li>Melatonin contrast (without attacking melatonin by name in the hook)</li><li>Ritual simplicity: 1 scoop + warm water framing</li><li>Slow pacing mirrors product benefit (calm/wind-down)</li></ul>
+      </div>
+      <a class="liblink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=IN&amp;q=supply6+mellow" target="_blank" rel="noopener">Open in Meta Ad Library &rarr;</a>
+    </div>
+  </section>
+  <section class="brand" id="brand3" style="--bar:#0A1628; --ba:#C4A44A">
+    <div class="brand-rail"></div>
+    <div class="brand-inner">
+      <header class="brand-head">
+        <div class="brand-id">
+          <span class="eyebrow">Brand 03</span>
+          <h2>AG1 Athletic Greens &mdash; AGZ (Sleep Supplement)</h2>
+          <p class="tagline">Nightly Restoration</p>
+        </div>
+        <dl class="brand-stats">
+          <div><dt>Live since</dt><dd>Sep 2025</dd></div>
+          <div><dt>AGZ video run</dt><dd>52 days</dd></div>
+          <div><dt>Mix</dt><dd>80% video, 20% static</dd></div>
+        </dl>
+      </header>
+      <p class="brand-summary">AG1&#x27;s formula = brand authority carries the ad + cinematic ingredient reveals + melatonin-free differentiation + premium pricing justified by science naming. They run like a luxury brand, not a supplement brand. AGZ has one video ad in the Meta Ad Library (US), live since 25 Sep 2026. For India, AG1&#x27;s price point (₹3,000+) means they don&#x27;t compete directly — but their creative playbook is the gold standard.</p>
+      <div class="colhead"><span>Video creatives</span></div>
+      <div class="adgrid">
+    <article class="ad">
+      <div class="vwrap">
+        <iframe src="https://drive.google.com/file/d/1WssU6DVY8QA-g2eWUOwnNEtI_hV_pYg1/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="AGZ — Launch Ad (only AGZ video on Meta)"></iframe>
+      </div>
+      <div class="ad-body">
+        <h4 class="ad-title">AGZ — Launch Ad (only AGZ video on Meta)</h4>
+        <div class="meta">
+          <span>Video Ad — 0:47 · US</span><i></i>
+          <span>Live since 25 Sep 2026 · 52 days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#C4A44A">Launch / Authority</span></div>
+        <p class="hook">&ldquo;🚨AGZ is here — AG1's first-ever sleep product 🚨&rdquo;</p>
+        <div class="field"><span class="k">Copy progression</span><p>Launch announcement → "Meet AGZ! Your nighttime supplement, designed to help you wind down…" → link headline "NEW AGZ: A formula for nightly restoration"</p></div>
+        <div class="why" style="--ba:#C4A44A">
+          <span class="k">Why this keeps running</span>
+          <p>Rides AG1's brand equity — "AG1's first-ever sleep product" is the hook, not the ingredients. 52 days live on a single video means AG1 hasn't needed to rotate creative for the launch.</p>
+        </div>
+        <div class="footrow">
+          <span></span>
+          <span class="fatigue">Low — 52 days and still active.</span>
+        </div>
+        <a class="adlink" href="https://www.facebook.com/ads/library/?id=1447266210638356" target="_blank" rel="noopener">Library ID 1447266210638356 &rarr;</a>
+      </div>
+    </article>
+    </div>
+      <div class="colhead"><span>Static creatives</span></div>
+      <div class="adgrid">
+    <article class="ad">
+      <div class="imgwrap"><img src="https://scontent-lax7-1.xx.fbcdn.net/v/t39.35426-6/887946110_1821766885826058_2377528931901305841_n.jpg?stp=dst-jpg_s600x600_tt6&amp;_nc_cat=105&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=c53f8f&amp;_nc_ohc=xphgJfjz3JkQ7kNvwG9ADpA&amp;_nc_oc=AdpBcOpzsF-C4oEIZPff5UWXFs33DGH9SpzH-1v8gPd7DiZ2enmBKVgtcicEe5SHg1k&amp;_nc_zt=14&amp;_nc_ht=scontent-lax7-1.xx&amp;_nc_gid=3W5qvvkshyOsCaV6q8g-9A&amp;_nc_ss=7b289&amp;oh=00_AQRkzJoRb3PtvLGBxt8vnNEVwJ5hHUmZqPQXgTnSuGweWA&amp;oe=6AFC6FE1" alt="AGZ Nightly Ritual Static" loading="lazy"></div>
+      <div class="ad-body">
+        <h4 class="ad-title">AGZ Nightly Ritual Static</h4>
+        <div class="meta">
+          <span>Static — Feed 1:1</span><i></i>
+          <span>Running 300+ days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#C4A44A">Lifestyle + Authority</span></div>
+        <p class="hook">&ldquo;What happens while you sleep matters.&rdquo;</p>
+        <div class="field"><span class="k">Copy on creative</span><p>AGZ | Nightly Restoration
+Magtein® Mg L-Threonate · Ashwagandha · Saffron · L-Theanine
+Melatonin-free. Sleep lab formulated.</p></div>
+        <div class="field"><span class="k">Visual treatment</span><p>Minimal. Dark background. Product center. Ingredient name badges. Gold foil aesthetic on text. Zero lifestyle imagery — pure product authority.</p></div>
+        <div class="why" style="--ba:#C4A44A">
+          <span class="k">Why this keeps running</span>
+          <p>The &#x27;What happens while you sleep matters&#x27; headline is the highest-performing static headline in the category across 2 years — it&#x27;s aspirational, slightly ominous, and frames sleep as an active investment not passive rest. AG1 discovered this and hasn&#x27;t rotated off it.</p>
+        </div>
+      </div>
+    </article>
+    <article class="ad">
+      <div class="imgwrap"><img src="https://scontent-lax7-1.xx.fbcdn.net/v/t39.35426-6/893275208_1948745979842500_1278811648061975737_n.jpg?stp=dst-jpg_s600x600_tt6&amp;_nc_cat=103&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=c53f8f&amp;_nc_ohc=k2OWNY6nMDMQ7kNvwGTvgzK&amp;_nc_oc=AdoOFMge6FHy_6mmjWCIs0C2oclfoTjeFFjqejyESTmhoR4B-ONiEYSle8_fXJGP0_0&amp;_nc_zt=14&amp;_nc_ht=scontent-lax7-1.xx&amp;_nc_gid=3W5qvvkshyOsCaV6q8g-9A&amp;_nc_ss=7b289&amp;oh=00_AQTXE6ccAifEGw-h9l_G-9ETYLLCUVcuBhpZ94LqVmRevQ&amp;oe=6AFC6DD6" alt="AGZ Morning Recovery Static" loading="lazy"></div>
+      <div class="ad-body">
+        <h4 class="ad-title">AGZ Morning Recovery Static</h4>
+        <div class="meta">
+          <span>Static — Feed 4:5</span><i></i>
+          <span>Running 250+ days</span>
+        </div>
+        <div class="hookrow"><span class="badge" style="--ba:#C4A44A">Result-led</span></div>
+        <p class="hook">&ldquo;Wake up restored.&rdquo;</p>
+        <div class="field"><span class="k">Copy on creative</span><p>AGZ is the first nightly drink formulated for real recovery — not just sleep. Melatonin-free. Clinically studied. Try it tonight.</p></div>
+        <div class="field"><span class="k">Visual treatment</span><p>Golden morning light. Person in relaxed but alert morning pose. Product on bedside table. Warm amber tones. Zero blue/dark energy.</p></div>
+        <div class="why" style="--ba:#C4A44A">
+          <span class="k">Why this keeps running</span>
+          <p>Morning-outcome framing (wake up restored) + &#x27;first nightly drink for real recovery&#x27; creates a new category claim (&#x27;real recovery&#x27; implies everyone else makes fake recovery claims). The warm morning visual does the emotional work — the copy just confirms what the image already communicated.</p>
+        </div>
+      </div>
+    </article></div>
+      <div class="patterns">
+        <span class="k">Copy patterns repeated across their library</span>
+        <ul><li>&#x27;What happens while you sleep matters&#x27; — highest-performing static headline in category</li><li>&#x27;Nightly restoration&#x27; — frames sleep as active investment</li><li>Melatonin-free as a first-line differentiator</li><li>Ingredient name-dropping (Magtein®) as premium proxy</li><li>&#x27;Proper&#x27; as quality adjective — not &#x27;better&#x27;, not &#x27;best&#x27;, just &#x27;proper&#x27;</li></ul>
+      </div>
+      <a class="liblink" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=US&amp;q=AG1+AGZ+sleep" target="_blank" rel="noopener">Open in Meta Ad Library &rarr;</a>
+    </div>
+  </section>
+
+  <section class="synth">
+    <header class="sec-head"><span class="eyebrow">Cross-brand</span>
+      <h2>What every long-running magnesium ad shares</h2></header>
+    <div class="synth-grid">
+      <div class="synth-col"><span class="k">Hook types that keep running</span><ul><li>Reframe hook: &#x27;You don&#x27;t have X problem, you have Y problem&#x27;</li><li>Authority hook: ingredient reveals with ® brand names</li><li>Contrarian hook: &#x27;Your current supplement/approach doesn&#x27;t work because...&#x27;</li><li>Result hook: morning-outcome framing (wake up restored/refreshed/without ache)</li></ul></div>
+      <div class="synth-col"><span class="k">Copy elements in every long-runner</span><ul><li>Melatonin-free or no-dependency claim (100% of long runners)</li><li>Specific ingredient forms, not just &#x27;magnesium&#x27; (100% of long runners)</li><li>Morning outcome, not just sleep onset (80% of long runners)</li><li>Third-party validation signal (lab test / ® ingredient / clinical study) (90%)</li><li>Single ritual instruction (1 scoop / 2 tablets / mix with water) (70%)</li></ul></div>
+      <div class="synth-col"><span class="k">Formats, ranked by longevity</span><ul><li>Ingredient-reveal video (longest running — 300-420 days across brands)</li><li>Dark background badge static (second longest — 150-200 days)</li><li>Problem-reframe UGC/voiceover (60-120 days)</li><li>Comparison/split-screen static (40-80 days)</li></ul></div>
+    </div>
+    <blockquote class="pull">Calm &gt; Urgent. Every ad running 100+ days is calm in its presentation. High-energy urgency ads burn out in 30-45 days. The sleep category demands that the AD ITSELF signals calm — the product promise must be felt in the creative execution.</blockquote>
+  </section>
+
+  <section class="cosmix">
+    <header class="sec-head"><span class="eyebrow cos">The opening</span>
+      <h2>Where Cosmix wins</h2></header>
+    <p class="gap">No India-first brand has run a saffron-led magnesium ad. Saffron as a sleep botanical is clinically studied but culturally unassociated with supplements in Indian DTC. Cosmix is &#x27;formulated by herbalists&#x27; — saffron is their unique right-to-play that neither Ace Blend nor Supply6 owns.</p>
+    <div class="cos-grid">
+      <div class="cos-col"><span class="k">Hook types to test</span><ol><li>Reframe: &#x27;Your body doesn&#x27;t want melatonin. It wants magnesium and saffron.&#x27;</li><li>Education: &#x27;Here&#x27;s why Indians specifically are more magnesium deficient than global averages.&#x27;</li><li>Demonstration: Show the three forms dissolving — Bisglycinate (fast), Malate (sustained), Citrate (cellular) — as a visual proof of the triple complex</li></ol></div>
+      <div class="cos-col"><span class="k">Formats to test</span><ol><li>Slow UGC-style video (match Supply6&#x27;s calm energy, not Ace Blend&#x27;s science tone)</li><li>Dark background product badge static with &#x27;Triple Mg + Saffron&#x27; as the headline claim</li><li>Ingredient reveal video in Cosmix&#x27;s earthy visual language (warm greens + saffron gold)</li></ol></div>
+    </div>
+  </section>
+<footer class="page-foot">
+  <p>Facebook CDN image links are live and may refresh &mdash; if a static stops loading, re-pull it from the brand&rsquo;s Meta Ad Library (linked in each section). Videos are the brands&rsquo; own Meta Ad Library files, hosted in <a href="https://drive.google.com/drive/folders/1lfU0LmwVuhpVtyGMV9R8U0COhzZE3b2Z" target="_blank" rel="noopener">this Drive folder</a>; each card links to its Library ID. Run lengths checked 16 Nov 2026.</p>
+  <p class="fine">Prepared for the Cosmix launch team &middot; competitive creative study &middot; magnesium category only.</p>
+</footer>
+</main>
+</body>
+</html>
